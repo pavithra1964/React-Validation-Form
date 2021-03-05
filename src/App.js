@@ -1,23 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from 'react';
+import WrappedRegistrationForm from './component/aftervalid.js';
+import Form from './component/react.jsx';
+import Validation from './component/validation';
+import validation from './component/validation';
 
 function App() {
+
+  
+  const [user, setUser] = useState({fname: "", lname: "", email: ""});
+  const [error, setError] = useState("");
+
+  const Submit = details => {
+    console.log(details);
+
+    if (details == " ") {
+      console.log("Details cannot identify");
+    }
+    else{
+      console.log("Logged in");
+    }
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+        {(user.email != "") ? (
+          <div className="welcome">
+            <h2>WelCome, <span>{user.name}</span></h2>
+            <h5>Successfully Registered!</h5>
+          </div>
+        ) : (<Form />)}
+        <WrappedRegistrationForm />
     </div>
   );
 }
